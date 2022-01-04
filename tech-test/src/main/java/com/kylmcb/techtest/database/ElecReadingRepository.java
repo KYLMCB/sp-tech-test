@@ -1,4 +1,10 @@
 package com.kylmcb.techtest.database;
 
-public interface ElecReadingRepository {
+import com.kylmcb.techtest.models.ElecReading;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+@org.springframework.stereotype.Repository
+public interface ElecReadingRepository extends JpaRepository<ElecReading, Long> {
+
 }
+
