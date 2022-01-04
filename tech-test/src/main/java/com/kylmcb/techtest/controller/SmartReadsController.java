@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -29,7 +26,7 @@ public class SmartReadsController {
     @GetMapping(path = "/smart/reads/{account_id}")
     public ResponseEntity<Account> getAccountById(@PathVariable("account_id") long accountId) {
         log.info("Finding account with accountId {}", accountId);
-        Account account = accountRepository.findById(accountId);
+        Account account = accountRepository.findByAccountId(accountId);
         if (account != null) {
             log.info("Account found with accountId {}: {}", accountId, account);
             return new ResponseEntity<>(account, HttpStatus.OK);
@@ -37,5 +34,9 @@ public class SmartReadsController {
             log.info("No account found with accountId {}", accountId);
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping(path = "/smart/reads")
+    public void submitMeterRead(){
     }
 }
