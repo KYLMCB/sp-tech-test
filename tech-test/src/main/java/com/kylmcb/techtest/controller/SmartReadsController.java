@@ -25,8 +25,8 @@ public class SmartReadsController {
     GasReadingRepository gasReadingRepository;
 
     @GetMapping(path = "/smart/reads/{account_id}")
-    public void getAccountById(@PathVariable("account_id") long account_id) {
+    public ResponseEntity<Account> getAccountById(@PathVariable("account_id") long account_id) {
         Account account = accountRepository.findById(account_id);
-        System.out.println(account);
+        return new ResponseEntity<>(account, HttpStatus.OK);
     }
 }
