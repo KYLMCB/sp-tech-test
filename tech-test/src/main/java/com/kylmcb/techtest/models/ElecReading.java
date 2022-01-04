@@ -1,5 +1,6 @@
 package com.kylmcb.techtest.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,7 @@ public class ElecReading {
     private int reading;
     private LocalDate date;
 
+    @JsonBackReference
     @ToString.Exclude
     @ManyToOne()
     @JoinColumn(name = "account_id")
